@@ -20,6 +20,12 @@ const rename = require("gulp-rename");
 const server = require("browser-sync").create();
 const sequence = require("run-sequence");
 
+// constants for additional packeges
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+
 // Создаем таск для сборки html файлов
 gulp.task("html", () => {
   // Берем все файлы с расширением html в папке src
@@ -176,4 +182,16 @@ gulp.task("build", function(done) {
 // Запускается из корня проекта командой npm start
 gulp.task("start", function(done) {
   sequence("build", "server", "watch");
+});
+
+// Homework Task:
+gulp.task('js', function () {
+
+  gulp.src('./src/*.js') // only *.js files in src-folder
+    .pipe(babel({
+      presets: ['env']
+    }))
+    .pipe(uglify())
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest('./build/')); // destination folder is /build
 });
