@@ -23,8 +23,8 @@ const sequence = require("run-sequence");
 // constants for additional packeges
 const babel = require('gulp-babel');
 const concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var pump = require('pump');
+const uglify = require('gulp-uglify');
+const pump = require('pump');
 
 // Создаем таск для сборки html файлов
 gulp.task("html", () => {
